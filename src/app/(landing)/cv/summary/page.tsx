@@ -134,8 +134,8 @@ export default function SummaryPage() {
               <span className="icon-chip shrink-0">
                 <Briefcase size={20} />
               </span>
-              <div className="flex flex-col gap-4">
-                <p className="text-sm leading-relaxed text-ink-muted sm:text-base">{t(currentWork)}</p>
+              <div className="flex min-w-0 flex-col gap-4">
+                <p className="text-sm leading-relaxed text-ink-muted break-words sm:text-base">{t(currentWork)}</p>
                 <a
                   href={currentWorkLink}
                   target="_blank"

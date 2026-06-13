@@ -173,7 +173,7 @@ export function ProjectGallery({
               type="button"
               aria-label="Close"
               onClick={() => setLightbox(null)}
-              className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-lg bg-app/60 text-ink ring-1 ring-line/15 transition-colors hover:text-primary"
+              className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-lg bg-app/60 text-ink ring-1 ring-line/15 transition-colors hover:text-primary"
             >
               <X size={20} />
             </button>
@@ -187,7 +187,7 @@ export function ProjectGallery({
                     e.stopPropagation();
                     setLightbox((i) => (i === null ? i : (i - 1 + count) % count));
                   }}
-                  className="absolute left-3 grid h-11 w-11 place-items-center rounded-full bg-app/60 text-ink ring-1 ring-line/15 transition-colors hover:text-primary sm:left-6"
+                  className="absolute left-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-app/60 text-ink ring-1 ring-line/15 transition-colors hover:text-primary sm:left-6"
                 >
                   <ChevronLeft size={22} />
                 </button>
@@ -198,7 +198,7 @@ export function ProjectGallery({
                     e.stopPropagation();
                     setLightbox((i) => (i === null ? i : (i + 1) % count));
                   }}
-                  className="absolute right-3 grid h-11 w-11 place-items-center rounded-full bg-app/60 text-ink ring-1 ring-line/15 transition-colors hover:text-primary sm:right-6"
+                  className="absolute right-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-app/60 text-ink ring-1 ring-line/15 transition-colors hover:text-primary sm:right-6"
                 >
                   <ChevronRight size={22} />
                 </button>
