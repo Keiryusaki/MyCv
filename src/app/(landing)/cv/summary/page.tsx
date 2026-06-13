@@ -135,7 +135,7 @@ export default function SummaryPage() {
                 <Briefcase size={20} />
               </span>
               <div className="flex min-w-0 flex-col gap-4">
-                <p className="text-sm leading-relaxed text-ink-muted break-words sm:text-base">{t(currentWork)}</p>
+                <p className="whitespace-pre-line text-sm leading-relaxed text-ink-muted break-words sm:text-base">{t(currentWork)}</p>
                 <a
                   href={currentWorkLink}
                   target="_blank"

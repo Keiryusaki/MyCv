@@ -37,7 +37,7 @@ type SectionKey =
 const SHOW_KEY = "cv-export-show";
 // Bump the suffix whenever the default seed in cv.ts changes so returning
 // users who never edited the text pick up the new default instead of a stale one.
-const WORK_KEY = "cv-export-currentwork-v2";
+const WORK_KEY = "cv-export-currentwork-v3";
 
 const defaultShow: Record<SectionKey, boolean> = {
   photo: true,
@@ -179,9 +179,11 @@ export function ExportPanel({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <div className="flex min-h-0 flex-1 flex-col md:flex-row">
+        {/* Mobile: scroll the whole body (controls then a tall preview).
+            Desktop: side-by-side, each column scrolls on its own. */}
+        <div className="flex min-h-0 flex-1 flex-col overflow-y-auto md:flex-row md:overflow-hidden">
           {/* ===== Controls ===== */}
-          <div className="flex w-full flex-col gap-4 overflow-y-auto border-b border-line/10 p-5 md:w-72 md:border-b-0 md:border-r">
+          <div className="flex w-full shrink-0 flex-col gap-4 border-b border-line/10 p-5 md:w-72 md:overflow-y-auto md:border-b-0 md:border-r">
             <div>
               <p className="eyebrow mb-2">{t(ui.exportInclude)}</p>
               <div className="flex flex-col gap-1.5">
@@ -233,7 +235,7 @@ export function ExportPanel({ onClose }: { onClose: () => void }) {
           </div>
 
           {/* ===== Live preview ===== */}
-          <div className="flex min-h-0 flex-1 flex-col bg-black/30">
+          <div className="flex h-[75vh] shrink-0 flex-col bg-black/30 md:h-auto md:min-h-0 md:flex-1 md:shrink">
             <span className="px-4 py-1.5 text-center text-[0.7rem] uppercase tracking-wider text-ink-muted">
               {t(ui.livePreview)}
             </span>
