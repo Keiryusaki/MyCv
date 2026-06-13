@@ -4,6 +4,7 @@
  * `useT()` hook. Edit any value here and every page updates automatically.
  */
 import type { L } from "@/i18n";
+import { withBasePath } from "@/lib/basePath";
 
 export const profile = {
   name: "Eka Dian Purnama",
@@ -19,8 +20,8 @@ export const profile = {
   instagram: "https://instagram.com/kei_photograph",
   liveSite: "",
   /** Public-facing photos (served from /public). */
-  photo: "/pp.jpg",
-  idCard: "/id-card-mitreka.jpg",
+  photo: withBasePath("/pp.jpg"),
+  idCard: withBasePath("/id-card-mitreka.jpg"),
 };
 
 /** Longer personal bio for the "About Me" section (webview). */
@@ -177,25 +178,25 @@ export const certifications: {
     title: { id: "Surat Tugas Mengajar", en: "Teaching Assignment Letter" },
     issuer: "AMIK Bina Sarana Informatika",
     date: { id: "Ganjil 2014/2015", en: "Odd Sem. 2014/2015" },
-    image: "/certificates/4.jpg",
+    image: withBasePath("/certificates/4.jpg"),
   },
   {
     title: { id: "Surat Tugas Mengajar", en: "Teaching Assignment Letter" },
     issuer: "AMIK Bina Sarana Informatika",
     date: { id: "Genap 2013/2014", en: "Even Sem. 2013/2014" },
-    image: "/certificates/3.jpg",
+    image: withBasePath("/certificates/3.jpg"),
   },
   {
     title: { id: "Surat Tugas Mengajar", en: "Teaching Assignment Letter" },
     issuer: "AMIK Bina Sarana Informatika",
     date: { id: "Ganjil 2013/2014", en: "Odd Sem. 2013/2014" },
-    image: "/certificates/2.jpg",
+    image: withBasePath("/certificates/2.jpg"),
   },
   {
     title: { id: "Surat Tugas Mengajar", en: "Teaching Assignment Letter" },
     issuer: "AMIK Bina Sarana Informatika",
     date: { id: "Genap 2012/2013", en: "Even Sem. 2012/2013" },
-    image: "/certificates/1.jpg",
+    image: withBasePath("/certificates/1.jpg"),
   },
 ];
 
@@ -228,14 +229,14 @@ export const achievements: L[] = [
  * images in /public (e.g. /photos/foo.jpg) and set `src: "/photos/foo.jpg"`.
  */
 export const photos: { src?: string; hue: number; caption?: L }[] = [
-  { src: "/photos/jpo.jpg", hue: 280, caption: { id: "Karya foto #1", en: "Photo #1" } },
-  { src: "/photos/sunset.webp", hue: 280, caption: { id: "Karya foto #2", en: "Photo #2" } },
-  { src: "/photos/prau.jpg", hue: 280, caption: { id: "Karya foto #3", en: "Photo #3" } },
-  { src: "/photos/nightjpo.jpg", hue: 280, caption: { id: "Karya foto #4", en: "Photo #4" } },
-  { src: "/photos/nabila.jpg", hue: 280, caption: { id: "Karya foto #5", en: "Photo #5" } },
-  { src: "/photos/capucinno.jpg", hue: 280, caption: { id: "Karya foto #6", en: "Photo #6" } },
-  { src: "/photos/mywife.jpg", hue: 280, caption: { id: "Karya foto #7", en: "Photo #7" } },
-  { src: "/photos/ayu.jpg", hue: 280, caption: { id: "Karya foto #8", en: "Photo #8" } },
+  { src: withBasePath("/photos/jpo.jpg"), hue: 280, caption: { id: "Karya foto #1", en: "Photo #1" } },
+  { src: withBasePath("/photos/sunset.webp"), hue: 280, caption: { id: "Karya foto #2", en: "Photo #2" } },
+  { src: withBasePath("/photos/prau.jpg"), hue: 280, caption: { id: "Karya foto #3", en: "Photo #3" } },
+  { src: withBasePath("/photos/nightjpo.jpg"), hue: 280, caption: { id: "Karya foto #4", en: "Photo #4" } },
+  { src: withBasePath("/photos/nabila.jpg"), hue: 280, caption: { id: "Karya foto #5", en: "Photo #5" } },
+  { src: withBasePath("/photos/capucinno.jpg"), hue: 280, caption: { id: "Karya foto #6", en: "Photo #6" } },
+  { src: withBasePath("/photos/mywife.jpg"), hue: 280, caption: { id: "Karya foto #7", en: "Photo #7" } },
+  { src: withBasePath("/photos/ayu.jpg"), hue: 280, caption: { id: "Karya foto #8", en: "Photo #8" } },
 ];
 
 /** Hobbies (Hobi) — shown on the PDF only. */
@@ -287,7 +288,7 @@ export const projects: {
     stack: ["Vue", "Laravel", "Tailwind"],
     live: "https://keiryusaki.github.io/MitrekaStyleMockup/#/",
     hue: 190,
-    images: ["/portfolio/mitreka-design-system/cover.png", "/portfolio/mitreka-design-system/colors.png", "/portfolio/mitreka-design-system/buttons.png"],
+    images: [withBasePath("/portfolio/mitreka-design-system/cover.png"), withBasePath("/portfolio/mitreka-design-system/colors.png"), withBasePath("/portfolio/mitreka-design-system/buttons.png")],
   },
   {
     title: "Web Compro CITS Indonesia",
@@ -299,7 +300,7 @@ export const projects: {
     stack: ["Next.js", "Tailwind", "AI-assisted"],
     live: "https://citsindonesia.co.id/",
     hue: 210,
-    images: ["/portfolio/web-compro-cits/cover.png", "/portfolio/web-compro-cits/about-0.png", "/portfolio/web-compro-cits/about-1.png", "/portfolio/web-compro-cits/layanan-0.png", "/portfolio/web-compro-cits/layanan-1.png", "/portfolio/web-compro-cits/product-0.png", "/portfolio/web-compro-cits/contact-0.png"],
+    images: [withBasePath("/portfolio/web-compro-cits/cover.png"), withBasePath("/portfolio/web-compro-cits/about-0.png"), withBasePath("/portfolio/web-compro-cits/about-1.png"), withBasePath("/portfolio/web-compro-cits/layanan-0.png"), withBasePath("/portfolio/web-compro-cits/layanan-1.png"), withBasePath("/portfolio/web-compro-cits/product-0.png"), withBasePath("/portfolio/web-compro-cits/contact-0.png")],
   },
   {
     title: "Naraya Brand Identity",
@@ -311,7 +312,7 @@ export const projects: {
     stack: ["Illustrator", "SVG", "React"],
     live: "https://ui.naraya.ai/docs/brand/logo",
     hue: 220,
-    images: ["/portfolio/naraya-brand-identity/cover.jpg", "/portfolio/naraya-brand-identity/logo-full.png", "/portfolio/naraya-brand-identity/logo-full-dblue-white.png", "/portfolio/naraya-brand-identity/logo-full-dblue.png", "/portfolio/naraya-brand-identity/logo-full-dblue-white.png"],
+    images: [withBasePath("/portfolio/naraya-brand-identity/cover.jpg"), withBasePath("/portfolio/naraya-brand-identity/logo-full.png"), withBasePath("/portfolio/naraya-brand-identity/logo-full-dblue-white.png"), withBasePath("/portfolio/naraya-brand-identity/logo-full-dblue.png"), withBasePath("/portfolio/naraya-brand-identity/logo-full-dblue-white.png")],
   },
   {
     title: "Photography Set",
@@ -320,7 +321,7 @@ export const projects: {
     stack: ["Lightroom", "Photoshop"],
     live: "https://instagram.com/kei_photograph",
     hue: 320,
-    images: ["/photos/nightjpo.jpg", "/photos/capucinno.jpg"],
+    images: [withBasePath("/photos/nightjpo.jpg"), withBasePath("/photos/capucinno.jpg")],
   },
   {
     title: "Web BPT Komdigi",
@@ -332,7 +333,7 @@ export const projects: {
     stack: ["Laravel", "Bootstrap"],
     live: "https://bpt.komdigi.go.id/Home",
     hue: 220,
-    images: ["/portfolio/web-bpt-komdigi/cover.png", "/portfolio/web-bpt-komdigi/home-1.png"],
+    images: [withBasePath("/portfolio/web-bpt-komdigi/cover.png"), withBasePath("/portfolio/web-bpt-komdigi/home-1.png")],
   },
   {
     title: "HRIS Mobile App",
@@ -344,6 +345,6 @@ export const projects: {
     stack: ["Vue", "Tailwind"],
     live: "https://keiryusaki.github.io/MitrekaStyleMockup/#/mockup-hris-admin/live-attendance",
     hue: 260,
-    images: ["/portfolio/hris-mobile/cover.png", "/portfolio/hris-mobile/home-0.png", "/portfolio/hris-mobile/karyawan-0.png", "/portfolio/hris-mobile/req-0.png", "/portfolio/hris-mobile/pengaturan-0.png"],
+    images: [withBasePath("/portfolio/hris-mobile/cover.png"), withBasePath("/portfolio/hris-mobile/home-0.png"), withBasePath("/portfolio/hris-mobile/karyawan-0.png"), withBasePath("/portfolio/hris-mobile/req-0.png"), withBasePath("/portfolio/hris-mobile/pengaturan-0.png")],
   },
 ];
