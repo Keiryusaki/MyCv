@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================================================================
+   Cyber-Enterprise Glassmorphism — design tokens
+   Colors are space-separated RGB triples so Tailwind can apply opacity:
+   rgb(var(--color-primary) / 0.4).  Dark theme is the default (and only) theme.
+   =========================================================================== */
+:root {
+  --bg-app: 6 10 20; /* deep navy-black */
+  --bg-surface: 17 24 39; /* slate-900-ish */
+  --bg-muted: 12 17 30;
+  --border-subtle: 148 163 184; /* used at low opacity for glass borders */
+
+  --color-primary: 34 211 238; /* cyan-400 — neon accent */
+  --color-accent: 99 102 241; /* indigo-500 — secondary neon */
+  --color-success: 52 211 153; /* emerald-400 */
+
+  --text-main: 226 232 240; /* slate-200 */
+  --text-muted: 148 163 184; /* slate-400 */
+
+  --easing-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html,
+body {
+  background: rgb(var(--bg-app));
+  color: rgb(var(--text-main));
+  font-family: var(--font-sans), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+/* No horizontal scroll on any viewport. (Kept as `hidden`: switching to `clip`
+   changed the backdrop root and broke the hero glass cards' backdrop-filter.
+   The topbar no longer toggles on scroll, so the old sticky-jank reason is gone.) */
+body {
+  overflow-x: hidden;
+}
+
+/* ===== Custom scrollbar — branded thin cyan rail, applied to every scroll
+   surface (window + any nested overflow like the portfolio lightbox body). ===== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-primary) / 0.46) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-primary) / 0.34);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-primary) / 0.5);
+  background-clip: padding-box;
+}
+
+/* ===== Page-level ornament backdrop (fixed, refracts through glass) ===== */
+.cv-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: rgb(var(--bg-app));
+  background-image:
+    radial-gradient(55% 50% at 12% 8%, rgb(var(--color-primary) / 0.12), transparent 60%),
+    radial-gradient(45% 45% at 88% 16%, rgb(var(--color-accent) / 0.12), transparent 60%),
+    radial-gradient(50% 50% at 70% 95%, rgb(var(--color-primary) / 0.08), transparent 60%);
+}
+
+/* Faint grid lines for the "enterprise" feel. */
+.cv-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(var(--border-subtle) / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--border-subtle) / 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, #000, transparent 80%);
+  mask-image: radial-gradient(circle at 50% 30%, #000, transparent 80%);
+}
+
+/* ===========================================================================
+   Glassmorphism utilities
+   =========================================================================== */
+@layer components {
+  .glass {
+    background-color: rgb(255 255 255 / 0.05);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 1rem;
+  }
+
+  /* Top-edge light catch for a frosted sheen. */
+  .glass-sheen {
+    position: relative;
+  }
+  .glass-sheen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.07) 0%, rgb(255 255 255 / 0) 42%);
+    box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.1);
+  }
+
+  /* Rich hover: lift + neon border + glow. */
+  .card-rich {
+    transition:
+      transform 0.3s var(--easing-smooth),
+      box-shadow 0.3s var(--easing-smooth),
+      border-color 0.3s var(--easing-smooth);
+    /* NOTE: no `will-change: transform` here — it promotes the card to its own
+       compositing layer, which breaks `backdrop-filter` (frost) on the same
+       element in Chromium. The hover transform is cheap enough without it. */
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .card-rich:hover {
+      transform: translateY(-6px);
+    }
+  }
+  .card-rich:hover {
+    border-color: rgb(var(--color-primary) / 0.5);
+    box-shadow:
+      0 18px 40px -18px rgb(0 0 0 / 0.7),
+      0 0 0 1px rgb(var(--color-primary) / 0.25),
+      0 0 36px -6px rgb(var(--color-primary) / 0.45);
+  }
+
+  /* Eyebrow label. */
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(var(--text-muted));
+  }
+
+  /* Tinted icon chip. */
+  .icon-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.875rem;
+    height: 2.875rem;
+    border-radius: 0.85rem;
+    color: rgb(var(--color-primary));
+    background-image: linear-gradient(140deg, rgb(var(--color-primary) / 0.22), rgb(var(--color-primary) / 0.06));
+    box-shadow: inset 0 0 0 1px rgb(var(--color-primary) / 0.25);
+    transition: transform 0.3s var(--easing-smooth), box-shadow 0.3s var(--easing-smooth);
+  }
+  .icon-chip--accent {
+    color: rgb(var(--color-accent));
+    background-image: linear-gradient(140deg, rgb(var(--color-accent) / 0.22), rgb(var(--color-accent) / 0.06));
+    box-shadow: inset 0 0 0 1px rgb(var(--color-accent) / 0.25);
+  }
+  .card-rich:hover .icon-chip {
+    transform: scale(1.06);
+    box-shadow: inset 0 0 0 1px rgb(var(--color-primary) / 0.4), 0 6px 18px -6px rgb(var(--color-primary) / 0.6);
+  }
+
+  /* Gradient accent word. */
+  .accent-text {
+    background-image: linear-gradient(90deg, rgb(var(--color-primary)), rgb(var(--color-accent)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: rgb(var(--color-primary));
+  }
+}
+
+/* ===========================================================================
+   PRINT — the polished PDF is produced by the Export panel (react-pdf), not by
+   printing the screen. If someone uses the browser's raw Ctrl+P on a page, just
+   hide the decorative backdrop and interactive chrome for a cleaner fallback.
+   =========================================================================== */
+@media print {
+  .cv-backdrop,
+  .no-print {
+    display: none !important;
+  }
+}
